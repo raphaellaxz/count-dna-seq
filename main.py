@@ -1,9 +1,11 @@
+import load_txt_file_module
+import time
+
 outfilename = "results.txt"
 
 
 def main(seq, k):
     kmers_dict = count_kmers(seq, k)
-    print(kmers_dict)
     write2file(kmers_dict, outfilename)
 
 
@@ -48,7 +50,6 @@ def count_kmers_non_dict(seq, k):
     return [seq_list, count_list]
 
 
-
 def write2file_non_dict(kmer_list, counts, outfilename):
     with open(outfilename, "w") as file:
         for i in range(len(kmer_list)):
@@ -63,7 +64,10 @@ def check_if_contains_non_dna(cur_seq):
             continue
     return contains_non_dna
 
+
 if __name__ == '__main__':
-    main(
-        'ctccaaagaaattgtagttttcttctggcttagaggtagatcatcttggtccaatcagactgaaatgccttgaggctagatttcagtctttgtGGCAGCTGgtgaatttctagtttgccttttcagctagggattagctttttaggggtcccaatgcctagggagatttctaggtcctctgttccttgctgacctccaat'
-        , 2)
+    seq = load_txt_file_module.load_txt_file("example_chromosome21.txt")
+    start_time = time.time()
+    main_non_dict(seq, 2)
+    end_time = time.time()
+    print(f"Time elapsed is {(end_time - start_time):g} seconds.")
