@@ -27,9 +27,9 @@ def count_kmers(seq, k):
     return count_dict
 
 
-def write2file(kmers_dict, outfilename):
+def write2file(kmers_dict, outfile_name):
     sorted_keys = sorted(kmers_dict)
-    with open(outfilename, "w") as file:
+    with open(outfile_name, "w") as file:
         for key in sorted_keys:
             file.write(f"{key}:{kmers_dict[key]}\n")
 
